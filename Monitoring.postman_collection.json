@@ -114,18 +114,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/variables?id=3",
+					"raw": "{{host}}:{{port}}{{api_path}}/variables/variables?id=1",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}{{api_path}}",
 					"path": [
+						"variables",
 						"variables"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "3"
+							"value": "1"
 						}
 					]
 				}
@@ -137,7 +138,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}:{{port}}{{api_path}}/variables",
+							"raw": "{{host}}:{{port}}{{api_path}}/variables?id=1",
 							"host": [
 								"{{host}}"
 							],
@@ -148,8 +149,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1",
-									"disabled": true
+									"value": "1"
 								}
 							]
 						}
@@ -290,6 +290,15 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}:{{port}}{{api_path}}/variables",
 							"host": [
@@ -419,14 +428,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/variables/3",
+					"raw": "{{host}}:{{port}}{{api_path}}/variables/1",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}{{api_path}}",
 					"path": [
 						"variables",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -446,14 +455,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}{{api_path}}/variables/3",
+							"raw": "{{host}}:{{port}}{{api_path}}/variables/1",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}{{api_path}}",
 							"path": [
 								"variables",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -497,9 +506,21 @@
 		},
 		{
 			"name": "Consultar lista Measurements",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variable\": \"Temperatura\",\r\n    \"value\": \"25\",\r\n    \"unit\": \"°C\",\r\n    \"place\": \"Bogota\",\r\n    \"dateTime\": \"2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{host}}:{{port}}{{api_path}}/measurements",
 					"host": [
@@ -511,107 +532,67 @@
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "Create Measurement",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"variable\": \"Temperatura\",\r\n    \"value\": \"2\",\r\n    \"unit\": \"°C\",\r\n    \"place\": \"Bogota\",\r\n}"
-				},
-				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/measurements/",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}{{api_path}}",
-					"path": [
-						"measurements",
-						""
-					]
-				}
-			},
 			"response": [
 				{
-					"name": "Create Measurement",
+					"name": "Consultar lista Measurements",
 					"originalRequest": {
-						"method": "POST",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"variable\": \"Temperatura\"\r\n    \"value\": \"2\"\r\n    \"unit\": \"°C\"\r\n    \"place\": \"Bogota\"\r\n}"
+							"raw": "{\r\n    \"variable\": \"Temperatura\",\r\n    \"value\": \"2\",\r\n    \"unit\": \"°C\",\r\n    \"place\": \"Bogota\",\r\n    \"dateTime\": \"2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}{{api_path}}/measurements/",
+							"raw": "{{host}}:{{port}}{{api_path}}/measurements",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}{{api_path}}",
 							"path": [
-								"measurements",
-								""
+								"measurements"
 							]
 						}
 					},
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "[\r\n    {\r\n        \"model\": \"measurements.measurement\",\r\n        \"pk\": 3,\r\n        \"fields\": {\r\n            \"variable\": \"Temperatura\",\r\n            \"value\": \"2\",\r\n            \"unit\": \"°C\",\r\n            \"place\": \"Bogota\"\r\n        }\r\n    }\r\n]"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Cambiar Measurement por ID",
+			"name": "Consultar Measurement por ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/measurements/measurement?id=3",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}{{api_path}}",
-					"path": [
-						"measurements",
-						"measurement"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Consultar Measurement por ID",
-			"request": {
-				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/measurements/measurement?id=3",
+					"raw": "{{host}}:{{port}}{{api_path}}/measurements/2",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}{{api_path}}",
 					"path": [
 						"measurements",
-						"measurement"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						}
+						"2"
 					]
 				}
 			},
@@ -672,29 +653,177 @@
 			]
 		},
 		{
-			"name": "Borrar Measurements por ID",
+			"name": "Crear Measurement",
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variable\": \"Temperatura\",\r\n    \"value\": \"38\",\r\n    \"unit\": \"°C\",\r\n    \"place\": \"Barranquilla\",\r\n    \"dateTime\": \"2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{host}}:{{port}}{{api_path}}/measurements/measurement?id=3",
+					"raw": "{{host}}:{{port}}{{api_path}}/measurements/",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}{{api_path}}",
 					"path": [
 						"measurements",
-						"measurement"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						}
+						""
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create Measurement",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"variable\": \"Temperatura\",\r\n    \"value\": \"38\",\r\n    \"unit\": \"°C\",\r\n    \"place\": \"Barranquilla\",\r\n    \"dateTime\": \"2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}{{api_path}}/measurements/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}{{api_path}}",
+							"path": [
+								"measurements",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"model\": \"measurements.measurement\",\n        \"pk\": 3,\n        \"fields\": {\n            \"variable\": \"Temperatura\",\n            \"value\": \"38\",\n            \"unit\": \"°C\",\n            \"place\": \"Barranquilla\",\n            \"dateTime\": \"2023\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Cambiar Measurement por ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variable\": \"1\",\r\n    \"value\": \"380\",\r\n    \"unit\": \"K\",\r\n    \"place\": \"Huila\",\r\n    \"dateTime\": \"2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}{{api_path}}/measurements/1",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}{{api_path}}",
+					"path": [
+						"measurements",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cambiar Measurement por ID",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"variable\": \"Temperature\",\r\n    \"value\": \"380\",\r\n    \"unit\": \"K\",\r\n    \"place\": \"Huila\",\r\n    \"dateTime\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}{{api_path}}/measurements/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}{{api_path}}",
+							"path": [
+								"measurements",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar Measurements por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}"
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}{{api_path}}/measurements/1",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}{{api_path}}",
+					"path": [
+						"measurements",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar Measurements por ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}{{api_path}}/measurements/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}{{api_path}}",
+							"path": [
+								"measurements",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		}
 	],
 	"event": [

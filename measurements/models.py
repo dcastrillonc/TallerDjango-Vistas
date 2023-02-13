@@ -1,5 +1,4 @@
 from django.db import models
-
 from variables.models import Variable
 
 class Measurement(models.Model):

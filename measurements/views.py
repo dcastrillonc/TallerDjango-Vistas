@@ -34,7 +34,12 @@ def measurement_view(request, pk):
         measurement = serializers.serialize('json', [measurement_dto,])
         return HttpResponse(measurement, 'application/json')
 
-def variables_view(request):
+    if request.method == 'DEL':
+        measurements_dto = ml.delete_measurements(pk, json.loads(request.body))
+        measurements = serializers.serialize('json', [measurements_dto,])
+        return HttpResponse(measurements, 'application/json')
+
+def measurements_view(request):
     if request.method == 'GET':
         measurements = ml.get_measurements()
         measurements_dto = serializers.serialize('json', measurements)
